@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="requestGoogle()">Sign in with Google</button>
+    <button onclick="requestFacebook()">Sign in with Facebook</button>
+    <button onclick="requestGithub()">Sign in with Github</button>
+</body>
+
+<script>
+    function requestGoogle() {
+        const clientId = '723628015267-pbpd2m5br737v69gajc8n1d4geqhpeo7.apps.googleusercontent.com';
+        const redirectUri = 'http://127.0.0.1:5500/return.google.html';
+        const scope = 'email profile';
+
+        const authUrl = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=token`;
+        window.location.href = authUrl;
+        
+    }
+
+    function requestFacebook() {
+        const clientId = '303522068913611';
+        const redirectUri = 'http://127.0.0.1:5500/return.facebook.html';
+        const scope = 'email';
+
+        const authUrl = `https://www.facebook.com/v12.0/dialog/oauth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code`;
+        window.location.href = authUrl;
+        
+    }
+
+    function requestGithub() {
+        const clientId = '033f662cdda792dd4afd';
+        const redirectUri = 'http://127.0.0.1:5500/return.github.html';
+
+        const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
+        window.location.href = authUrl;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        const code = hashParams.get('code');
+        
+    }
+    
+</script>
+
+</html>
